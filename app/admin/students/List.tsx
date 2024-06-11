@@ -8,32 +8,31 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
-import { revalidatePath } from "next/cache"
+import { revalidatePath } from "next/cache";
   
   
-  interface IStudent{
+  interface IStudent {
     id:number,
     name:string,
     email:string
-
   }
+
   export default async function ListStudent() {
     const students = await list()
     async function list(){
-      revalidatePath("/admin/student")
-      const response = await fetch ("https://server20241.vercel.app/students");
-      return response.json();
+     revalidatePath("/admin/student")
+     const response = await fetch("https://apiserver20241.vercel.app/students");
+     return response.json();
     }
-
 
     return (
       <Table>
-        <TableCaption>Lista De Estudantes.</TableCaption>
+        <TableCaption>Lista de Estudantes</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">ID</TableHead>
-            <TableHead>NOME</TableHead>
-            <TableHead>EMAIL</TableHead>
+            <TableHead>Nome</TableHead>
+            <TableHead>Email</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -45,11 +44,7 @@ import { revalidatePath } from "next/cache"
             </TableRow>
           ))}
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-          </TableRow>
-        </TableFooter>
+       
       </Table>
     )
   }
