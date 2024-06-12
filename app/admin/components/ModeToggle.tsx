@@ -1,31 +1,41 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import Aside from "./Aside"
-import { Menu } from "lucide-react"
+"use client"
 
-export function MenuSheet() {
+import * as React from "react"
+
+import { useTheme } from "next-themes"
+ 
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { MoonIcon, SunIcon } from "lucide-react"
+
+export function ModeToggle() {
+  const { setTheme } = useTheme()
+
   return (
-    <div className="fixed top-1 left-1 md:hidden">
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline"><Menu/></Button>
-      </SheetTrigger>
-     
-      <SheetContent side="left">
-      <Aside className="block"/>
-      </SheetContent>
-    </Sheet>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="center">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Claro
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Escuro
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          Sistema
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
