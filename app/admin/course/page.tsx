@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
-import ListStudent from "./List";
+import Listcourse from "./List";
 
 
-export default function Student() {
+export default function Course() {
     return (
         <div className="w-full flex flex-col  mt-6">
             <div className="flex justify-center mb-6">
-                <a href="/admin/student/new">
-                    <Button>Cadastrar Estudante</Button>
+                <a href="/admin/course/new">
+                    <Button>Cadastrar Curso</Button>
                 </a>
             </div>
-            <ListStudent />
+            <Listcourse />
         </div>
     )
 }
