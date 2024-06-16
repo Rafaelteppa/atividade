@@ -23,24 +23,23 @@ const FormSchema = z.object({
     email: z.string().email({ message: "Digite o email correto" }),
 })
 
-export default function SaveStudent() {
+export default function SaveCourse() {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            name: "Adair",
-            email: "dfads@dfd.com.br"
+          name:"Rafael",
         },
     })
 
-    async function onSubmit(student: z.infer<typeof FormSchema>) {
+    async function onSubmit(course: z.infer<typeof FormSchema>) {
         const requestOption = {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(student)
+            body: JSON.stringify(course)
         }
-      const response = await fetch("https://apiserver20241.vercel.app/students", requestOption)
+      const response = await fetch("https://apiserver20241.vercel.app/courses", requestOption)
       form.reset();
-      alert("Estudante Cadastrado com Sucesso!")
+      alert("Curso Cadastrado com Sucesso!")
 
     }
 
@@ -54,7 +53,7 @@ export default function SaveStudent() {
                         <FormItem>
                             <FormLabel>Nome</FormLabel>
                             <FormControl>
-                                <Input placeholder="Digite o nome do Estudante" {...field} />
+                                <Input placeholder="Digite o nome " {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -65,9 +64,9 @@ export default function SaveStudent() {
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email:</FormLabel>
+                            <FormLabel>Nome:</FormLabel>
                             <FormControl>
-                                <Input placeholder="Digite o email do Estudante" {...field} />
+                                <Input placeholder="Digite o nome do curso" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
